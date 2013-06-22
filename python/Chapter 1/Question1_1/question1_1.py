@@ -1,6 +1,16 @@
 #Implement an algorithm to determine if a string has all unique characters.
 #What if you cannot use additional data structures?
 
+def isUniqueChars(inputstring):
+    #using bitwise operators
+    if len(inputstring) > 256:
+        return False
+    checker = 0
+    for char in inputstring:
+        val = 1 << ord(char)
+        if checker & val: return False
+        checker |= val
+    return True    
 
 def hasAllUniqueCharsNoDS(inputstring):
     #no data structures
