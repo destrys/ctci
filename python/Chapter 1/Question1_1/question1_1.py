@@ -2,7 +2,7 @@
 #What if you cannot use additional data structures?
 
 def isUniqueChars(inputstring):
-    #using bitwise operators
+    """ Tests if all chars in string are unique with bit vector implementation. """
     if len(inputstring) > 256:
         return False
     checker = 0
@@ -55,7 +55,7 @@ teststringtrue = "abcdefghijkl"
 teststringfalse = "aabvcgdfgbvxbj"
 
 #list of all functions to test
-funclist = [hasAllUniqueCharsNoDS,hasAllUniqueCharsList,hasAllUniqueChars]
+funclist = [isUniqueChars,hasAllUniqueCharsNoDS,hasAllUniqueCharsList,hasAllUniqueChars]
 
 for func in funclist:
     print "Testing function " + str(func)
