@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 #Given two strings, write a method to decide if one is a permutation of the other.
 
 # O(n^2)
@@ -14,31 +16,29 @@ def isPermutation(s1, s2):
 
 # big O complexity depends on python list sort complexity, which should be better than O(n^2)
 def isPermutationSort(s1,s2):
+    if len(s1) != len(s2):
+        return False
+
     #sort both strings, check if they are equal
-    s2sorted=sorted(s2)
-    for index, char in enumerate(sorted(s1)):
-        if char!=s2sorted[index]:
-            return False
-    return True
+    if sorted(s1) == sorted(s2):
+            return True
+    return False
 
 #O(n)
 def isPermutationHash(s1,s2):
     #using a dict as a hash table to count occurences, then comparing the 2 dict
     charcountdict1 = makeCharCountDict(s1)
-    charcountdict2 = makeCharCountDict(s2)
-    for char in charcountdict1:
-        if not (char in charcountdict2 and charcountdict1[char]==charcountdict2[char]):
+    for char in s2:
+        charcountdict1[char] -= 1
+        if charcountdict1[char] < 0:
             return False        
     return True
 
 #make a dict out of a string, tallying the use of each unique character
 def makeCharCountDict(instring):
-    returndict = {}
+    returndict = defaultdict(int)
     for char in instring:
-        if char in returndict:
-            returndict[char] += 1
-        else:
-            returndict[char] = 1
+        returndict[char] += 1
     return returndict
 
     
